@@ -1,0 +1,8 @@
+Artificial Intelligence is a branch of computer science.
+Machine Learning is a subset of Artificial Intelligence.
+Machine Learning allows computers to learn from data.
+Supervised Learning uses labelled training data.
+Unsupervised Learning identifies patterns in unlabelled data.
+Deep Learning uses artificial neural networks.
+
+If a machine learning model is trained using labelled data, then it is called a supervised learning model.
