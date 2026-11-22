@@ -19,85 +19,246 @@ st.set_page_config(
 
 
 # ==========================================
-# CUSTOM CSS
+# CUSTOM DESIGN
 # ==========================================
 
 st.html("""
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap');
+
+:root {
+    --cream: #FAF7F0;
+    --paper: #FFFEFA;
+    --red: #B94036;
+    --dark: #302C29;
+    --muted: #827A70;
+    --yellow: #F2D994;
+    --blue: #DCE8ED;
+    --green: #E1E9DA;
+    --border: #E8DFD1;
+}
+
 .stApp {
-    background-color: #FAF6EB;
-    color: #39352F;
+    background-color: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
 }
 
 .block-container {
     max-width: 1050px;
     padding-top: 2rem;
-    padding-bottom: 3rem;
+    padding-bottom: 4rem;
 }
 
-/* Headings */
+/* Typography */
 
 h1, h2, h3 {
-    color: #39352F !important;
-    font-family: "Trebuchet MS", sans-serif;
+    font-family: 'Playfair Display', serif !important;
+    color: var(--dark) !important;
+}
+
+p, label, span {
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Header */
+
+.brand-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 55px;
+}
+
+.brand-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+}
+
+.brand-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 2px;
+}
+
+/* Hero */
+
+.hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(45px, 7vw, 76px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -3px;
+    color: var(--dark);
+    margin: 0;
+}
+
+.hero-title span {
+    color: var(--red);
+    font-style: italic;
+}
+
+.hero-description {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 520px;
+    margin-top: 20px;
+}
+
+.hero-note {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 9px 15px;
+    background: var(--yellow);
+    border-radius: 5px;
+    font-size: 12px;
+    color: #62543A;
+    transform: rotate(-1deg);
+}
+
+/* Section headings */
+
+.section-label {
+    font-family: 'DM Mono', monospace;
+    color: var(--red);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.section-description {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Upload section */
+
+[data-testid="stFileUploader"] {
+    background: var(--paper);
+    border: 1px dashed #C9A69C;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+[data-testid="stFileUploader"] section {
+    background: transparent;
 }
 
 /* Buttons */
 
-.stButton > button {
-    background-color: #D96B59;
+.stButton > button,
+.stFormSubmitButton > button {
+    background: var(--red);
     color: white;
-    border: 2px solid #39352F;
-    border-radius: 12px;
-    font-weight: bold;
-    box-shadow: 3px 3px 0px #39352F;
-    transition: 0.2s;
+    border: 1px solid var(--red);
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-weight: 700;
+    transition: all 0.2s ease;
 }
 
-.stButton > button:hover {
-    background-color: #BF5548;
+.stButton > button:hover,
+.stFormSubmitButton > button:hover {
+    background: #96342C;
     color: white;
+    border-color: #96342C;
     transform: translateY(-2px);
 }
 
-/* Text input */
+/* Input fields */
 
 .stTextInput input {
-    background-color: #FFFEFA;
-    color: #39352F;
-    border: 2px solid #C8BDA9;
-    border-radius: 12px;
+    background: var(--paper);
+    color: var(--dark);
+    border: 1px solid #D8CFC1;
+    border-radius: 9px;
+    padding: 13px;
 }
 
-/* File uploader */
-
-[data-testid="stFileUploader"] {
-    background-color: #FFFDF6;
-    border: 2px dashed #D96B59;
-    border-radius: 16px;
-    padding: 15px;
+.stTextInput input:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 1px var(--red);
 }
 
 /* Metrics */
 
 [data-testid="stMetric"] {
-    background-color: #F3E8C9;
-    padding: 15px;
-    border: 1px solid #D8CBA9;
+    background: var(--paper);
+    border: 1px solid var(--border);
     border-radius: 12px;
+    padding: 18px;
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--muted);
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--red);
+    font-family: 'Playfair Display', serif;
 }
 
 /* Alerts */
 
 .stAlert {
-    border-radius: 12px;
+    border-radius: 10px;
+}
+
+/* Expanders */
+
+[data-testid="stExpander"] {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
 }
 
 /* Dividers */
 
 hr {
-    border-color: #DED3BE;
+    border-color: var(--border);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+
+.footer {
+    text-align: center;
+    padding: 30px 10px 10px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 2;
+}
+
+.footer strong {
+    color: var(--red);
 }
 
 </style>
@@ -105,81 +266,61 @@ hr {
 
 
 # ==========================================
-# HOMEPAGE
+# HEADER
 # ==========================================
 
 st.html("""
-<div style="
-    text-align: center;
-    padding: 20px 10px 10px 10px;
-">
+<div class="brand-strip">
+    <div class="brand-name">lowk<span style="color:#B94036">.</span>chud</div>
+    <div class="brand-tag">A DOCUMENT QUESTIONING MACHINE</div>
+</div>
+""")
 
-    <div style="
-        color: #D96B59;
-        font-size: 17px;
-        letter-spacing: 5px;
-        margin-bottom: 12px;
-    ">
-        ★ ─── THE KNOWLEDGE CARNIVAL ─── ★
+
+# ==========================================
+# HERO SECTION
+# ==========================================
+
+st.html("""
+<div style="padding: 5px 0 45px 0;">
+
+    <div class="hero-eyebrow">
+        ✳ THE KNOWLEDGE CARNIVAL · EST. 2026
     </div>
 
-    <h1 style="
-        font-family: 'Trebuchet MS', sans-serif;
-        font-size: clamp(34px, 6vw, 54px);
-        font-weight: 900;
-        color: #39352F;
-        margin: 0;
-    ">
-        LowkenuinelyChud
-    </h1>
+    <div class="hero-title">
+        Lowkenuinely<br>
+        <span>Chud.</span>
+    </div>
 
-    <p style="
-        color: #A45B4D;
-        font-size: 18px;
-        font-style: italic;
-        margin-top: 8px;
-    ">
+    <div class="hero-description">
+        You bring the document. You ask the questions.
+        Chud does the reading, finds the facts,
+        and connects the dots.
+    </div>
+
+    <div class="hero-note">
         bro just read the document.
-    </p>
-
-    <div style="
-        display: inline-block;
-        background: #F2D98F;
-        padding: 8px 20px;
-        border-radius: 10px;
-        border: 1px dashed #B79B5C;
-        color: #514633;
-        font-size: 14px;
-        margin-top: 8px;
-    ">
-        A little knowledge goes a long way.
     </div>
 
 </div>
 """)
 
 
-st.write("")
-
-st.markdown("""
-### 🎟️ Welcome, curious human!
-
-Bring a document. Ask a question. Let Chud do the reading.
-
-No boring manual searching. No unnecessary drama.
-""")
-
-st.divider()
-
-
 # ==========================================
 # DOCUMENT UPLOAD
 # ==========================================
 
-st.markdown("### 📎 One document, please!")
+st.html("""
+<div class="section-label">01 / THE INPUT</div>
+<div class="section-heading">First, bring the receipts.</div>
+<div class="section-description">
+    Upload a document and let Chud get acquainted with it.
+</div>
+""")
 
 uploaded_file = st.file_uploader(
-    "Choose your document",
+    "Drop your document here",
     type=["txt", "pdf", "docx"],
     help="Supported formats: PDF, DOCX and TXT."
 )
@@ -207,10 +348,21 @@ if uploaded_file:
         engine = ReasoningEngine()
         engine.load_rules(sentences)
 
-        st.success("Chud has successfully processed your document!")
+        st.success("Chud has read the document. We're so back.")
 
-        # Document statistics
-        st.markdown("### 🎠 Document statistics")
+        st.write("")
+
+        # ==========================================
+        # DOCUMENT STATISTICS
+        # ==========================================
+
+        st.html("""
+        <div class="section-label">02 / THE BREAKDOWN</div>
+        <div class="section-heading">A little document intelligence.</div>
+        <div class="section-description">
+            Here's what Chud found inside your document.
+        </div>
+        """)
 
         col1, col2, col3 = st.columns(3)
 
@@ -231,23 +383,34 @@ if uploaded_file:
 
         st.divider()
 
-
         # ==========================================
         # QUESTION INPUT
         # ==========================================
 
-        st.markdown("### 💭 What's on your mind?")
+        st.html("""
+        <div class="section-label">03 / THE INTERROGATION</div>
+        <div class="section-heading">Okay, what's the question?</div>
+        <div class="section-description">
+            Ask Chud anything about the uploaded document.
+        </div>
+        """)
 
-        question = st.text_input(
-            "Ask your document something:",
-            placeholder="What information are you looking for?"
-        )
+        with st.form("question_form"):
 
-        if st.button("Find my answer ✨"):
+            question = st.text_input(
+                "Your question",
+                placeholder="What information are you looking for?"
+            )
+
+            submitted = st.form_submit_button(
+                "Find my answer  →"
+            )
+
+        if submitted:
 
             if not question.strip():
 
-                st.warning("Come on, ask Chud something!")
+                st.warning("Come on, ask Chud something.")
 
             else:
 
@@ -277,23 +440,27 @@ if uploaded_file:
                     inferred_answers
                 )
 
-                st.markdown("### 🎪 Here's what Chud found!")
+                st.write("")
+
+                st.html("""
+                <div class="section-label">04 / THE VERDICT</div>
+                <div class="section-heading">Chud's got something for you.</div>
+                """)
 
                 st.info(answer)
-
 
                 # ==========================================
                 # SUPPORTING INFORMATION
                 # ==========================================
 
-                with st.expander("📚 View retrieved information"):
+                with st.expander("📚 Explore retrieved information"):
 
                     if search_results:
 
                         for result in search_results[:10]:
 
-                            st.write(
-                                f"**Relevance:** "
+                            st.caption(
+                                f"RELEVANCE SCORE: "
                                 f"{result['score']:.2f}"
                             )
 
@@ -307,12 +474,11 @@ if uploaded_file:
                             "No relevant information retrieved."
                         )
 
-
                 # ==========================================
                 # QUESTION ANALYSIS
                 # ==========================================
 
-                with st.expander("🔍 Question analysis"):
+                with st.expander("🔍 Explore question analysis"):
 
                     st.write(
                         "Question Type:",
@@ -333,7 +499,7 @@ if uploaded_file:
 else:
 
     st.info(
-        "Your document is waiting! Upload a PDF, DOCX or TXT "
+        "Your document is waiting. Upload a PDF, DOCX or TXT "
         "file to get started."
     )
 
@@ -345,14 +511,18 @@ else:
 st.divider()
 
 st.html("""
-<div style="
-    text-align: center;
-    padding: 12px;
-    color: #927F69;
-    font-size: 13px;
-">
+<div class="footer">
+
     Made with questionable levels of enthusiasm.
+
     <br>
-    <b>LowkenuinelyChud</b> · Knowledge. Chaos. Carnival. 🎪
+
+    <strong>LowkenuinelyChud</strong>
+    · Knowledge. Chaos. Carnival. 🎪
+
+    <br>
+
+    © 2026 · Built to make reading less of a chore.
+
 </div>
 """)
